@@ -24,6 +24,10 @@ jobs:
       run: |
         cat website.yml    
 
+    - name: Fetch CloudFormation events
+      run: aws cloudformation describe-stack-events --stack-name MyEC2Stack
+      
+
     - name: Deploy CloudFormation Stack
       run: |
         aws cloudformation deploy \
