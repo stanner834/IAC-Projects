@@ -1,4 +1,4 @@
-name: Terraform Deploy
+name: Deploy EC2 Instance
 
 on:
   push:
@@ -10,37 +10,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Repository
+    - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Set up Terraform
-      uses: hashicorp/setup-terraform@v1
-      with:
-        terraform_version: 1.1.0
-
-    - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v1
+    - name: AWS Configure
+      uses: aws-actions/configure-aws-credentials@v2
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-east-1  # Change this to your AWS region
+        aws-region: us-east-1 # Change to your desired AWS region
 
-    - name: Initialize Terraform
-      run: terraform init
-
-    - name: Plan Terraform Changes
-      run: terraform plan
-
-    - name: Apply Terraform Changes
-      run: terraform apply -auto-approve
-
-    - name: Store Terraform State
-      run: terraform state push
-
-    # Add any additional steps as needed for your workflow
-
-    - name: Cleanup
-      run: terraform destroy -auto-approve
+    - name: Deploy CloudFormation Stack
+      run: |
+        aws cloudformation deploy \
+          --stack-name MyEC2Stack \
+          --template-file C:/IAC-PROJECTS/website.yml \
+          --capabilities CAPABILITY_IAM
 
 
 
