@@ -13,7 +13,7 @@ Resources:
           Value: "MyEC2Instance"
 
   MyEC2Instance2:
-    Type: "AWS::EC2::Instance"
+    Type: "AWS::EC2::Instance2"
     Properties:
       ImageId: "ami-0230bd60aa48260c6" # Change to your desired AMI ID
       InstanceType: "t2.micro"         # Change to your desired instance type
