@@ -24,7 +24,7 @@ jobs:
       run: |
         aws cloudformation deploy \
           --stack-name MyEC2Stack \
-          --template-file /IAC-PROJECTS/website.yml \
+          --template-file "/IAC-PROJECTS/website.yml" \
           --capabilities CAPABILITY_IAM
 
 
