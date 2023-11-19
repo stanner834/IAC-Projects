@@ -6,7 +6,7 @@ Resources:
     Properties:
       ImageId: "ami-0230bd60aa48260c6" # Change to your desired AMI ID
       InstanceType: "t2.micro"         # Change to your desired instance type
-      KeyName: "tanner"         # Change to your key pair name
+      KeyName: "terraform"         # Change to your key pair name
 
       Tags:
         - Key: "Name"
